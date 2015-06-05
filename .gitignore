@@ -1,3 +1,9 @@
 *.keystore
 *.sw*
 platforms/^.*
+www/bower_components
+
+
+# Sublime
+*.sublime-project
+#.sublime-workspace

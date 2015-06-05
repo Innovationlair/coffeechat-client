@@ -1,0 +1,10 @@
+<ion-view title="{{networkName}}">
+  <ion-content has-header="true" has-tabs="true">
+  <div class="list">
+    <a class="item item-avatar" ng-repeat="member in members" ng-href="#/chatwith/{{member._id}}">
+      <img src="{{member.avatar || 'img/anonymous.gif' }}">
+      <h2>{{member.name}}</h2>
+    </a>
+  </div>
+  </ion-content>
+</ion-view>

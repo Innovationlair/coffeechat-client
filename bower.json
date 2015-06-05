@@ -1,0 +1,22 @@
+{
+  "name": "coffeechat",
+  "version": "1.0.0",
+  "homepage": "https://github.com/martin-marinov/coffeechat-client",
+  "description": "",
+  "main": "www/index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "www/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "latest",
+    "angular-local-storage": "~0.0.1",
+    "ionic-contrib-frosted-glass": "driftyco/ionic-contrib-frosted-glass",
+    "angular-socket-io": "~0.4.1",
+    "socket.io-client": "~0.9.16"
+  }
+}
