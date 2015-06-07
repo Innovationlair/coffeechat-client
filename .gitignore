@@ -2,8 +2,9 @@
 *.sw*
 platforms/^.*
 www/bower_components
-
+node_modules
 
 # Sublime
 *.sublime-project
 #.sublime-workspace
+/.project

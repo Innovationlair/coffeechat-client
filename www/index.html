@@ -3,52 +3,34 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>CoffeeChat</title>
+    <title></title>
 
-    <!-- ionic css -->
-    <link href="bower_components/ionic/release/css/ionic.css" rel="stylesheet">
-    <link href="bower_components/ionic-contrib-frosted-glass/ionic.contrib.frostedGlass.css" rel="stylesheet">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-    <!-- your app's css -->
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/chat.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
 
-    <!-- ionic/angularjs scripts -->
-    <script src="bower_components/ionic/release/js/ionic.bundle.js"></script>
-    <script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
-    <script src="bower_components/socket.io-client/dist/socket.io.min.js"></script>
-    <script src="bower_components/angular-socket-io/socket.min.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- your app's script -->
-    <script src="js/constants.js"></script>
-    <script src="js/services/socket.js"></script>
-    <script src="js/services/token.js"></script>
-    <script src="js/services/location.js"></script>
-    <script src="js/services/network_info.js"></script>
-    <script src="js/services/network.js"></script>
-    <script src="js/controllers/networkController.js"></script>
-    <script src="js/controllers/networksListController.js"></script>
-    <script src="js/controllers/chatController.js"></script>
+    <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
   </head>
-
-  <!--
-    'coffeechat' is the name of this angular module (js/app.js)
-  -->
-  <body ng-app="coffeechat" animation="slide-left-right-ios7">
+  <body ng-app="starter">
     <!--
-      The nav bar that will be updated as we navigate between views
-      Additional attributes set its look, ion-nav-bar animation and icons
-      Icons provided by Ionicons: http://ionicons.com/
+      The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar type="bar-positive"
-             animation="nav-title-slide-ios7"
-             back-button-type="button-icon button-clear"
-             back-button-icon="ion-ios7-arrow-back"></ion-nav-bar>
-
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
