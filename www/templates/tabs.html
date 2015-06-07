@@ -17,7 +17,11 @@ navigation history that also transitions its views in and out.
 </ion-tabs> -->
 
 <div class="tabs tabs-top tabs-icon-top">
-  <a class="tab-item active" ui-sref="tab.chats">
+  <a class="tab-item" ui-sref="tab.look-around">
+    <i class="icon ion-star"></i>
+    Look Around
+  </a>
+  <a class="tab-item" ui-sref="tab.chats">
     <i class="icon ion-chatboxes"></i>
     Chats
   </a>
@@ -27,7 +31,7 @@ navigation history that also transitions its views in and out.
   </a>
   <li class="tab-item">
     <label class="toggle">
-      <input type="checkbox">
+      <input type="checkbox" ng-model="online">
       <div class="track">
         <div class="handle"></div>
       </div>
