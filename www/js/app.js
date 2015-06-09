@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'monospaced.elastic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +30,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-  .state('tab', {
+    .state('tab', {
     url: "/tabs",
     abstract: true,
     templateUrl: "templates/tabs.html",
@@ -40,16 +40,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each tab has its own nav history stack:
 
   .state('tab.look-around', {
-      url: '/look-around',
-      views: {
-        '': {
-          templateUrl: 'templates/look-around.html',
-          controller: function() {
-            
-          }
+    url: '/look-around',
+    views: {
+      '': {
+        templateUrl: 'templates/look-around.html',
+        controller: function() {
+
         }
       }
-    })
+    }
+  })
 
   .state('tab.chats', {
       url: '/chats',
@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         '': {
           templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+          controller: 'UserMessagesCtrl' //'ChatDetailCtrl'
         }
       }
     })
