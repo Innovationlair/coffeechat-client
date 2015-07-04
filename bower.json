@@ -5,6 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.0.0"
   },
   "dependencies": {
-    "angular-elastic": "~2.4.2"
+    "angular-elastic": "~2.4.2",
+    "angular-moment": "~0.10.1",
+    "Autolinker.js": "~0.18.1"
   }
 }

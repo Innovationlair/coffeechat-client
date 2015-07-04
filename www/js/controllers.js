@@ -1,7 +1,11 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', [
+  'coffeechat.user.services'
+])
 
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', function($scope, User) {
   $scope.online = true;
+
+  $scope.currentUser = User.me;
 })
 
 // .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

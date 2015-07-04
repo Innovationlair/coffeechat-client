@@ -1,4 +1,11 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'coffeechat.chat', 'monospaced.elastic'])
+angular.module('starter', [
+  'ionic',
+  'angularMoment',
+  'starter.controllers',
+  'starter.services',
+  'coffeechat.chat',
+  'monospaced.elastic'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -54,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/chats/:userId',
       views: {
         '': {
           templateUrl: 'templates/chat-detail.html',
