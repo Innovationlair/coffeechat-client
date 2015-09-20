@@ -14,27 +14,33 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+<!-- 	The file was loaded after the controllers were invoked, to fix later -->
+    <script src="../plugins/com.synconset.imagepicker/www/imagepicker.js"></script>
+    
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/angular-elastic/elastic.js"></script>
     <script src="bower_components/Autolinker.js/dist/Autolinker.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
 
     <!-- your app's js -->
-    <script async src="js/app.js"></script>
-    <script async src="js/controllers.js"></script>
-    <script async src="js/services.js"></script>
-    <script async src="js/chat/chat.js"></script>
-    <script async src="js/chat/chat-controllers.js"></script>
-    <script async src="js/chat/chat-services.js"></script>
-    <script async src="js/chat/chat-detail/chat-detail.js"></script>
-    <script async src="js/chat/chat-detail/chat-detail-controllers.js"></script>
-    <script async src="js/chat/chat-detail/chat-detail-services.js"></script>
-    <script async src="js/chat/chat-detail/chat-detail-directives.js"></script>
-    <script async src="js/user/user-services.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/common/common-services.js"></script>
+    <script src="js/chat/chat.js"></script>
+    <script src="js/chat/chat-controllers.js"></script>
+    <script src="js/chat/chat-services.js"></script>
+    <script src="js/chat/chat-detail/chat-detail.js"></script>
+    <script src="js/chat/chat-detail/chat-detail-controllers.js"></script>
+    <script src="js/chat/chat-detail/chat-detail-services.js"></script>
+    <script src="js/chat/chat-detail/chat-detail-directives.js"></script>
+    <script src="js/user/user-services.js"></script>
   </head>
   <body ng-app="starter">
     <!--

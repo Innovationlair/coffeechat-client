@@ -7,7 +7,7 @@ angular.module('starter', [
   'monospaced.elastic'
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $location) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,6 +18,8 @@ angular.module('starter', [
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    
+    $location.path('/tabs/look-around');
   });
 })
 
@@ -44,9 +46,7 @@ angular.module('starter', [
     views: {
       '': {
         templateUrl: 'templates/look-around.html',
-        controller: function() {
-
-        }
+        controller: 'LookAroundCtrl'
       }
     }
   })
@@ -81,6 +81,6 @@ angular.module('starter', [
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tabs/look-around');
+  //$urlRouterProvider.otherwise('/tabs/look-around');
 
 });
