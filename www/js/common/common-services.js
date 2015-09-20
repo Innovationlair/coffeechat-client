@@ -68,7 +68,7 @@ angular.module('coffeechat.common-services', [])
 		
 		var xhr = new XMLHttpRequest();
 		var createUserUrl = this.baseUrl + this.serviceUrls.createUser;
-		xhr.open('POST', 'http://192.168.137.1:3000/users');
+		xhr.open('POST', createUserUrl);
 		
 		// add the required HTTP header to handle a multipart form data POST request
  		xhr.setRequestHeader('Content-Type','multipart/form-data; boundary=' + boundary);
