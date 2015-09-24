@@ -27,8 +27,11 @@ angular.module('starter.controllers',
 						// JSON.stringify(data));
 						DataStorage.token = data.token;
 						DataStorage.setToken(data.token);
+						DataStorage.setUserId(data._id);
+						DataStorage.name = data.name;
+						DataStorage.userId = data._id;
 					}, function(error) {
-						console.log("Error: " + JSON.stringify(errir));
+						console.log("Error: " + JSON.stringify(error));
 					});
 	
 				}, function(error) {

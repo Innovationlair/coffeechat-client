@@ -13,7 +13,9 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   $timeout,
   $interval,
   User,
-  ChatDetail) {
+  ChatDetail,
+  ServerClient,
+  DataStorage) {
 
   // mock acquiring data via $stateParams
   $scope.toUser = User.byId($stateParams.userId);
@@ -32,6 +34,10 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   $scope.$on('$ionicView.enter', function() {
 
     getMessages();
+    
+    $scope.socket = {};
+    
+    connectToServer();
 
     $timeout(function() {
       footerBar = document.body.querySelector('#userMessagesView .bar-footer');
@@ -70,6 +76,29 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
         }, 0);
       });
   }
+  
+  function connectToServer(){
+	  $scope.socket = io.connect(ServerClient.baseUrl);
+	  $scope.socket.on("connect", function(msg){
+		  
+		  $scope.socket.emit('register', DataStorage.getUserId());
+		  
+		  console.log("Me: " + DataStorage.getUserId());
+		  console.log("Him: " + $scope.toUser._id);
+	  });
+	  $scope.socket.on("message", function(msg){
+		  	console.log("Received: " + JSON.stringify(msg));
+		    $scope.messages.push({
+				body: msg.message,
+				_id : new Date().getTime(),
+				date : new Date(),
+				username : DataStorage.name,
+				senderId : msg.senderId,
+				pic : $scope.currentUser.pic,
+			});
+			$scope.$apply();
+	  });
+  }
 
   $scope.$watch('input.message', function(newValue, oldValue) {
     if (!newValue) newValue = '';
@@ -78,8 +107,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 
   $scope.sendMessage = function(sendMessageForm) {
     var message = {
-      toId: $scope.toUser._id,
-      text: $scope.input.message
+    		recipientId: $scope.toUser._id,
+    		body: $scope.input.message
     };
 
     // if you do a web service call this will be needed as well as before the viewScroll calls
@@ -91,10 +120,13 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 
     message._id = new Date().getTime();
     message.date = new Date();
-    message.username = $scope.currentUser.name.first;
-    message.userId = $scope.currentUser._id;
+    message.username = DataStorage.name;
+    message.senderId = DataStorage._id;
     message.pic = $scope.currentUser.pic;
 
+    //console.log("Message: " + JSON.stringify(message));
+    $scope.socket.emit("message", message);
+    
     $scope.messages.push(message);
 
     $timeout(function() {
@@ -141,7 +173,7 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 
   // this prob seems weird here but I have reasons for this in my app, secret!
   $scope.viewProfile = function(msg) {
-    if (msg.userId === $scope.currentUser._id) {
+    if (msg.senderId === $scope.currentUser._id) {
       // go to your profile
     } else {
       // go to other users profile
