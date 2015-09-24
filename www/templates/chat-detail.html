@@ -39,25 +39,25 @@
         <span am-time-ago="message.date"></span>
       </div>
 
-      <div ng-if="currentUser._id !== message.userId">
+      <div ng-if="currentUser._id !== message.senderId">
 
         <img ng-click="viewProfile(message)" class="profile-pic left" ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />
 
         <div class="chat-bubble left">
 
-          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+          <div class="message" ng-bind-html="message.body | nl2br" autolinker>
           </div>
 
         </div>
       </div>
 
-      <div ng-if="currentUser._id === message.userId">
+      <div ng-if="currentUser._id === message.senderId">
 
         <img ng-click="viewProfile(message)" class="profile-pic right" ng-src="{{currentUser.pic}}" onerror="onProfilePicError(this)" />
 
         <div class="chat-bubble right">
 
-          <div class="message" ng-bind-html="message.text | nl2br" autolinker>
+          <div class="message" ng-bind-html="message.body | nl2br" autolinker>
           </div>
 
         </div>

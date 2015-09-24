@@ -22,13 +22,16 @@ angular.module('starter.controllers',
 		ImageFilePicker.pickImage().then(
 				function(result) {
 					ServerClient.createUser(result.file, result.data,
-							"pesho123").then(function(data) {
+							"samsung").then(function(data) {
 						// console.log("Success: " +
 						// JSON.stringify(data));
 						DataStorage.token = data.token;
 						DataStorage.setToken(data.token);
+						DataStorage.setUserId(data._id);
+						DataStorage.name = data.name;
+						DataStorage.userId = data._id;
 					}, function(error) {
-						console.log("Error: " + JSON.stringify(errir));
+						console.log("Error: " + JSON.stringify(error));
 					});
 	
 				}, function(error) {

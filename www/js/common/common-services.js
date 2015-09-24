@@ -48,7 +48,7 @@ angular.module('coffeechat.common-services', [])
 })
 
 .service('ServerClient', function($q){
-	this.baseUrl = 'http://192.168.137.1:3000';
+	this.baseUrl = 'http://192.168.1.12:3000';
 	this.serviceUrls = {
 		createUser : '/users',
 		createNetwork : '/networks'
@@ -101,7 +101,7 @@ angular.module('coffeechat.common-services', [])
 				lat: latitude,
 				lon: longitude
 		};
-		
+		console.log("Logging in network: " + JSON.stringify(data));
 		return $.ajax({
 			type: 'POST',
 			url: createNetworkUrl,
@@ -152,6 +152,7 @@ angular.module('coffeechat.common-services', [])
 	this.token = "";
 	this.name = "";
 	this.networkName = "";
+	this.userId = "";
 	
 	this.getToken = function(){
 		return localStorage.getItem("token");
@@ -159,6 +160,14 @@ angular.module('coffeechat.common-services', [])
 	
 	this.setToken = function(token){
 		localStorage.setItem("token", token);
+	}
+	
+	this.getUserId = function(){
+		return localStorage.getItem("userId");
+	}
+	
+	this.setUserId = function(id){
+		localStorage.setItem("userId", id);
 	}
 })
 
