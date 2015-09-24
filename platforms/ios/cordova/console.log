@@ -1,0 +1,63 @@
+2015-09-24 21:53:52.476 lookAround[3653:315790] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Data/Application/2E880416-1C00-4883-8185-6FC491A4A408/Library/Cookies/Cookies.binarycookies
+2015-09-24 21:53:52.565 lookAround[3653:315790] Apache Cordova native platform version 3.9.1 is starting.
+2015-09-24 21:53:52.565 lookAround[3653:315790] Multi-tasking -> Device: YES, App: YES
+2015-09-24 21:53:52.567 lookAround[3653:315790] Unlimited access to network resources
+2015-09-24 21:53:52.628 lookAround[3653:315790] [CDVTimer][keyboard] 0.047982ms
+2015-09-24 21:53:52.644 lookAround[3653:315790] [CDVTimer][splashscreen] 15.331984ms
+2015-09-24 21:53:52.647 lookAround[3653:315790] [CDVTimer][file] 3.188014ms
+2015-09-24 21:53:52.647 lookAround[3653:315790] [CDVTimer][TotalPluginStartup] 19.304991ms
+2015-09-24 21:53:52.696 lookAround[3653:315790] Resetting plugins due to page load.
+2015-09-24 21:53:52.840 lookAround[3653:315790] Finished load of: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Bundle/Application/680583DD-2491-4B62-85B0-FA495CF6F6D3/lookAround.app/www/index.html
+2015-09-24 21:53:53.872 lookAround[3653:315790] THREAD WARNING: ['ImagePicker'] took '15.708984' ms. Plugin should use a background thread.
+2015-09-24 21:57:08.312 lookAround[3725:318695] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Data/Application/B4171FF0-C628-40CD-9A28-0974F26D8452/Library/Cookies/Cookies.binarycookies
+2015-09-24 21:57:08.394 lookAround[3725:318695] Apache Cordova native platform version 3.9.1 is starting.
+2015-09-24 21:57:08.394 lookAround[3725:318695] Multi-tasking -> Device: YES, App: YES
+2015-09-24 21:57:08.395 lookAround[3725:318695] Unlimited access to network resources
+2015-09-24 21:57:08.456 lookAround[3725:318695] [CDVTimer][keyboard] 0.052989ms
+2015-09-24 21:57:08.468 lookAround[3725:318695] [CDVTimer][splashscreen] 11.633992ms
+2015-09-24 21:57:08.469 lookAround[3725:318695] [CDVTimer][file] 1.441956ms
+2015-09-24 21:57:08.469 lookAround[3725:318695] [CDVTimer][TotalPluginStartup] 13.485014ms
+2015-09-24 21:57:08.524 lookAround[3725:318695] Resetting plugins due to page load.
+2015-09-24 21:57:08.655 lookAround[3725:318695] Finished load of: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Bundle/Application/7843E177-4C27-4234-B1C6-38632018F166/lookAround.app/www/index.html
+2015-09-24 21:57:20.353 lookAround[3725:318695] locationManager::didFailWithError (null)
+2015-09-24 21:57:20.357 lookAround[3725:318695] Error{}
+2015-09-24 21:57:23.708 lookAround[3725:318695] Error{}
+2015-09-24 22:17:28.154 lookAround[4181:333983] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Data/Application/76B75CC9-5501-4FFB-8957-C28FD63D5EED/Library/Cookies/Cookies.binarycookies
+2015-09-24 22:17:28.243 lookAround[4181:333983] Apache Cordova native platform version 3.9.1 is starting.
+2015-09-24 22:17:28.243 lookAround[4181:333983] Multi-tasking -> Device: YES, App: YES
+2015-09-24 22:17:28.244 lookAround[4181:333983] Unlimited access to network resources
+2015-09-24 22:17:28.308 lookAround[4181:333983] [CDVTimer][keyboard] 0.051975ms
+2015-09-24 22:17:28.320 lookAround[4181:333983] [CDVTimer][splashscreen] 12.318015ms
+2015-09-24 22:17:28.322 lookAround[4181:333983] [CDVTimer][file] 1.455009ms
+2015-09-24 22:17:28.322 lookAround[4181:333983] [CDVTimer][TotalPluginStartup] 14.175951ms
+2015-09-24 22:17:28.383 lookAround[4181:333983] Resetting plugins due to page load.
+2015-09-24 22:17:28.518 lookAround[4181:333983] Finished load of: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Bundle/Application/1DBB709E-E8C5-4948-8221-4D72D841BF25/lookAround.app/www/index.html
+2015-09-24 22:17:31.142 lookAround[4181:333983] locationManager::didFailWithError (null)
+2015-09-24 22:17:31.160 lookAround[4181:333983] Error{}
+2015-09-24 22:17:36.172 lookAround[4181:333983] Error{}
+2015-09-24 22:19:33.510 lookAround[4255:336085] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Data/Application/857A8F4E-3716-4005-B09B-208C556F6E7A/Library/Cookies/Cookies.binarycookies
+2015-09-24 22:19:33.594 lookAround[4255:336085] Apache Cordova native platform version 3.9.1 is starting.
+2015-09-24 22:19:33.594 lookAround[4255:336085] Multi-tasking -> Device: YES, App: YES
+2015-09-24 22:19:33.596 lookAround[4255:336085] Unlimited access to network resources
+2015-09-24 22:19:33.661 lookAround[4255:336085] [CDVTimer][keyboard] 0.047028ms
+2015-09-24 22:19:33.673 lookAround[4255:336085] [CDVTimer][splashscreen] 11.641979ms
+2015-09-24 22:19:33.674 lookAround[4255:336085] [CDVTimer][file] 1.505017ms
+2015-09-24 22:19:33.675 lookAround[4255:336085] [CDVTimer][TotalPluginStartup] 13.544977ms
+2015-09-24 22:19:33.723 lookAround[4255:336085] Resetting plugins due to page load.
+2015-09-24 22:19:33.865 lookAround[4255:336085] Finished load of: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Bundle/Application/E0156D46-A069-48A0-8A7F-1BCB6C6CE80A/lookAround.app/www/index.html
+2015-09-24 22:19:40.483 lookAround[4255:336085] locationManager::didFailWithError (null)
+2015-09-24 22:19:40.501 lookAround[4255:336085] Error{}
+2015-09-24 22:20:55.022 lookAround[4255:336085] Error{}
+2015-09-24 22:21:04.423 lookAround[4255:336085] Error{}
+2015-09-24 23:05:16.861 lookAround[5320:368558] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Data/Application/DFDDC612-8805-4BAE-BF31-2A9F6E2766A7/Library/Cookies/Cookies.binarycookies
+2015-09-24 23:05:16.943 lookAround[5320:368558] Apache Cordova native platform version 3.9.1 is starting.
+2015-09-24 23:05:16.943 lookAround[5320:368558] Multi-tasking -> Device: YES, App: YES
+2015-09-24 23:05:16.945 lookAround[5320:368558] Unlimited access to network resources
+2015-09-24 23:05:17.006 lookAround[5320:368558] [CDVTimer][keyboard] 0.050008ms
+2015-09-24 23:05:17.019 lookAround[5320:368558] [CDVTimer][splashscreen] 12.916982ms
+2015-09-24 23:05:17.020 lookAround[5320:368558] [CDVTimer][file] 1.381040ms
+2015-09-24 23:05:17.020 lookAround[5320:368558] [CDVTimer][TotalPluginStartup] 14.689028ms
+2015-09-24 23:05:17.068 lookAround[5320:368558] Resetting plugins due to page load.
+2015-09-24 23:05:17.211 lookAround[5320:368558] Finished load of: file:///Users/mihailkarev/Library/Developer/CoreSimulator/Devices/24856759-A9EF-4087-9A96-B7396F47DCF1/data/Containers/Bundle/Application/3AEF86F5-0BF3-41F9-A966-5F99E01109AA/lookAround.app/www/index.html
+2015-09-24 23:05:21.027 lookAround[5320:368558] success on get wifi [object Object]
+2015-09-24 23:05:21.046 lookAround[5320:368558] locationManager::didFailWithError (null)

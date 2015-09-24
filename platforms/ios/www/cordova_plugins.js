@@ -8,6 +8,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.synconset.imagepicker/www/imagepicker.js",
+        "id": "com.synconset.imagepicker.ImagePicker",
+        "clobbers": [
+            "plugins.imagePicker"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
         "id": "cordova-plugin-console.console",
         "clobbers": [
@@ -33,20 +40,6 @@ module.exports = [
         "id": "cordova-plugin-splashscreen.SplashScreen",
         "clobbers": [
             "navigator.splashscreen"
-        ]
-    },
-    {
-        "file": "plugins/org.bcsphere.wifi/www/wifi.js",
-        "id": "org.bcsphere.wifi.wifi",
-        "merges": [
-            "navigator.wifi"
-        ]
-    },
-    {
-        "file": "plugins/com.synconset.imagepicker/www/imagepicker.js",
-        "id": "com.synconset.imagepicker.ImagePicker",
-        "clobbers": [
-            "plugins.imagePicker"
         ]
     },
     {
@@ -222,20 +215,27 @@ module.exports = [
         "clobbers": [
             "navigator.geolocation"
         ]
+    },
+    {
+        "file": "plugins/org.bcsphere.wifi/www/wifi.js",
+        "id": "org.bcsphere.wifi.wifi",
+        "merges": [
+            "navigator.wifi"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.ionic.keyboard": "1.0.4",
+    "com.synconset.imagepicker": "1.0.6",
     "cordova-plugin-console": "1.0.0",
     "cordova-plugin-device": "1.0.0",
     "cordova-plugin-splashscreen": "2.0.0",
     "cordova-plugin-whitelist": "1.0.0",
-    "org.bcsphere.wifi": "0.0.1",
-    "com.synconset.imagepicker": "1.0.6",
     "org.apache.cordova.file": "1.3.3",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.geolocation": "0.3.12",
+    "org.bcsphere.wifi": "0.0.1"
 }
 // BOTTOM OF METADATA
 });

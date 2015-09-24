@@ -38,5 +38,31 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.synconset.imagepicker": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wymsee/cordova-imagePicker.git",
+            "subdir": "."
+        }
+    },
+    "org.apache.cordova.file": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\George\\AppData\\Local\\Temp\\org.apache.cordova.file\\package"
+        }
+    },
+    "org.apache.cordova.geolocation": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\George\\AppData\\Local\\Temp\\org.apache.cordova.geolocation\\package"
+        }
+    },
+    "org.bcsphere.wifi": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bcsphere/wifi.git",
+            "subdir": "."
+        }
     }
 }
