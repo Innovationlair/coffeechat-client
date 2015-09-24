@@ -22,7 +22,7 @@ angular.module('starter.controllers',
 		ImageFilePicker.pickImage().then(
 				function(result) {
 					ServerClient.createUser(result.file, result.data,
-							"samsung").then(function(data) {
+							"samsung1").then(function(data) {
 						// console.log("Success: " +
 						// JSON.stringify(data));
 						DataStorage.token = data.token;

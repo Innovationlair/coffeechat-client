@@ -37,8 +37,6 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 
     getMessages();
     
-    $scope.socket = {};
-    
     connectToServer();
 
     $timeout(function() {
@@ -80,29 +78,21 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   }
   
   function connectToServer(){
-	  $scope.socket = io.connect(ServerClient.baseUrl);
-	  $scope.socket.on("connect", function(msg){
-		  
-		  $scope.socket.emit('register', DataStorage.getUserId());
-		  
-		  console.log("Me: " + DataStorage.getUserId());
-		  console.log("Him: " + $scope.toUser._id);
-	  });
-	  $scope.socket.on("message", function(msg){
-		  	console.log("Received: " + JSON.stringify(msg));
-		    $scope.messages.push({
-				body: msg.message,
-				_id : new Date().getTime(),
-				date : new Date(),
-				username : DataStorage.name,
-				senderId : msg.senderId,
-				pic : $scope.currentUser.pic,
-			});
-			$scope.$apply();
-			
-			console.log("Current: " + ($scope.currentUser._id == msg.senderId));
-	  });
+	  ServerClient.connectToServer();
+	  ServerClient.onMessageReceived(onMessageReceived);
   }
+  
+	function onMessageReceived(msg){
+		$scope.messages.push({
+			body: msg.message,
+			_id : new Date().getTime(),
+			date : new Date(),
+			username : DataStorage.name,
+			senderId : msg.senderId,
+			pic : $scope.currentUser.pic,
+		});
+		$scope.$apply();
+	}
 
   $scope.$watch('input.message', function(newValue, oldValue) {
     if (!newValue) newValue = '';
@@ -127,13 +117,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
     message.username = DataStorage.name;
     message.senderId = DataStorage.getUserId();
     message.pic = $scope.currentUser.pic;
-
-	
-	console.log("Current ID: " + $scope.currentUser._id);
-	console.log("Sender ID: " + message.senderId); 
-	console.log("Current: " + ($scope.currentUser._id == message.senderId));
     
-    $scope.socket.emit("message", message);
+    ServerClient.sendMessage(message);
     
     $scope.messages.push(message);
 

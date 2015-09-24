@@ -14,7 +14,7 @@ angular.module('coffeechat.common-services', [])
 			maximumImagesCount : 1,
 			width : 800,
 			height : 800,
-			quality : 80
+			quality : 20
 		};
 
 		if (window.imagePicker) {
@@ -25,6 +25,7 @@ angular.module('coffeechat.common-services', [])
 					data.file(function(file) {
 						var reader = new FileReader();
 						reader.onloadend = function(evt) {
+						
 							deferred.resolve({
 								data : evt.target.result,
 								file : file
@@ -53,6 +54,8 @@ angular.module('coffeechat.common-services', [])
 		createUser : '/users',
 		createNetwork : '/networks'
 	};
+	
+	this.socket = null;
 	
 	// Sends a request to the server to create a new user
 	// - avatar - the file metadata of the avatar picture
@@ -145,6 +148,30 @@ angular.module('coffeechat.common-services', [])
  		reqBody += "--" + boundary + "\r\n";
  		
  		return reqBody;
+	};
+
+	this.connectToServer = function(userId){
+		var deferred = $q.defer();
+	
+		this.socket = io.connect(this.baseUrl);
+		var that = this;
+		this.socket.on("connect", function(){
+			that.socket.emit('register', userId);
+			
+			deferred.resolve();
+		});
+		
+		return deferred;
+	};
+	
+	this.onMessageReceived = function(callback){
+		this.socket.on("message", function(msg){
+			callback(msg);
+		});
+	};
+	
+	this.sendMessage = function(message){
+		this.socket.emit("message", message);
 	};
 })
 
