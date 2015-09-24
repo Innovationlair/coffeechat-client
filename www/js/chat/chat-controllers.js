@@ -23,7 +23,7 @@ angular.module('coffeechat.chat.controllers', [
   	.then(function(info){
   		Helpers.getPosition()
   			.then(function(position){
-				console.log("SSIS: " + info.SSID);
+			
   				ServerClient.createNetwork(
   						info.SSID.replace('"', '').replace('"', ''), 
   						position.coords.latitude, 
@@ -35,6 +35,7 @@ angular.module('coffeechat.chat.controllers', [
 						var receivedData = JSON.parse(response.responseText);
 						for(var i = 0; i < receivedData.members.length; i++){
 							var member = receivedData.members[i];
+							
 							Chats.addChat({
 								id: member._id,
 							    name: member.name,

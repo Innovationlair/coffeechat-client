@@ -20,6 +20,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   // mock acquiring data via $stateParams
   $scope.toUser = User.byId($stateParams.userId);
 
+  $scope.currentUser._id = DataStorage.getUserId();
+  
   $scope.input = {
     message: localStorage['userMessage-' + $scope.toUser._id] || ''
   };
@@ -97,6 +99,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 				pic : $scope.currentUser.pic,
 			});
 			$scope.$apply();
+			
+			console.log("Current: " + ($scope.currentUser._id == msg.senderId));
 	  });
   }
 
@@ -121,10 +125,14 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
     message._id = new Date().getTime();
     message.date = new Date();
     message.username = DataStorage.name;
-    message.senderId = DataStorage._id;
+    message.senderId = DataStorage.getUserId();
     message.pic = $scope.currentUser.pic;
 
-    //console.log("Message: " + JSON.stringify(message));
+	
+	console.log("Current ID: " + $scope.currentUser._id);
+	console.log("Sender ID: " + message.senderId); 
+	console.log("Current: " + ($scope.currentUser._id == message.senderId));
+    
     $scope.socket.emit("message", message);
     
     $scope.messages.push(message);
