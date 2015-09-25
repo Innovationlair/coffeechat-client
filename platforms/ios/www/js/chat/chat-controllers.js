@@ -23,12 +23,11 @@ angular.module('coffeechat.chat.controllers', [
   	.then(function(info){
   		Helpers.getPosition()
   			.then(function(position){
-			
   				ServerClient.createNetwork(
   						info.SSID.replace('"', '').replace('"', ''), 
   						position.coords.latitude, 
   						position.coords.longitude,
-  						DataStorage.token)
+  						DataStorage.getToken())
 					.then(function(error){
 						console.log(JSON.stringify(error));
 					}, function(response){
@@ -38,19 +37,21 @@ angular.module('coffeechat.chat.controllers', [
 						for(var i = 0; i < receivedData.members.length; i++){
 							var member = receivedData.members[i];
 							
-							Chats.addChat({
-								id: member._id,
-							    name: member.name,
-							    lastText: 'You on your way?',
-							    face: member.avatar.replace("\\", "/").replace("\\", "/"),
-							    unreadMessages: 1
-							});
-							
-							User.addUser({
-								_id: member._id,
-							    name: {first: member.name, last: ''},
-							    pic: member.avatar.replace("\\", "/").replace("\\", "/")
-							});
+							if(member._id != DataStorage.getUserId()){								
+								Chats.addChat({
+									id: member._id,
+									name: member.name,
+									lastText: '',
+									profilePic: member.avatar,
+									unreadMessages: 0
+								});
+								
+								User.addUser({
+									_id: member._id,
+									name: {first: member.name, last: ''},
+									pic: member.avatar
+								});
+							}
 						}
 						
 						$scope.$apply();

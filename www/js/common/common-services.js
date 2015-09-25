@@ -25,7 +25,11 @@ angular.module('coffeechat.common-services', [])
 					data.file(function(file) {
 						var reader = new FileReader();
 						reader.onloadend = function(evt) {
-
+							console.log("imahge format");
+							console.log(file.type);
+							if (!file.type) {
+								file.type = "image/jpeg";
+							}
 							deferred.resolve({
 								data : evt.target.result.replace("data:" + file.type + ";base64,", ""),
 								file : file

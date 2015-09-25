@@ -28,27 +28,27 @@ angular.module('starter.controllers',
     		function(result) {
      			ImageFilePicker.uploadImage(result.data)
       			.then(function(imgUrl) {
-        ServerClient.createUser("sony11", imgUrl)
-         .then(function(error) {
-          console.log("Error: " + JSON.stringify(error));
-         }, function(response){
-          var userData = JSON.parse(response.responseText);
-          console.log("Received data: " + JSON.stringify(userData));
-          DataStorage.setToken(userData.token);
-          DataStorage.setUserId(userData._id);
-          DataStorage.setUsername(userData.name);
-          DataStorage.setAvatar(userData.avatar);
+        			ServerClient.createUser($scope.user.username, imgUrl)
+         				.then(function(error) {
+          					console.log("Error: " + JSON.stringify(error));
+         				}, function(response){
+          					var userData = JSON.parse(response.responseText);
+          					console.log("Received data: " + JSON.stringify(userData));
+         					DataStorage.setToken(userData.token);
+          					DataStorage.setUserId(userData._id);
+          					DataStorage.setUsername(userData.name);
+          					DataStorage.setAvatar(userData.avatar);
           
-          console.log("Initial token: " + DataStorage.getToken());
-         });
-      },
-      function(error) {
-       console.log("Error: " + JSON.stringify(error));
-      });
+         					 console.log("Initial token: " + DataStorage.getToken());
+         				});
+      			},
+      			function(error) {
+       				console.log("Error: " + JSON.stringify(error));
+      			});
      
-    }, function(error) {
-     console.log("Error: " + JSON.stringify(error));
-    });
+    		}, function(error) {
+     			console.log("Error: " + JSON.stringify(error));
+    		});
 
 	};
 	
