@@ -79,7 +79,6 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   }
   
   function connectToServer(){
-	  ServerClient.connectToServer($scope.currentUser._id);
 	  ServerClient.onMessageReceived(onMessageReceived);
   }
   

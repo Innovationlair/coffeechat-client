@@ -23,7 +23,7 @@ angular.module('starter.controllers',
 				function(result) {
 					ImageFilePicker.uploadImage(result.data)
 						.then(function(imgUrl) {
-								ServerClient.createUser("sony10", imgUrl)
+								ServerClient.createUser("sony11", imgUrl)
 									.then(function(error) {
 										console.log("Error: " + JSON.stringify(error));
 									}, function(response){
@@ -33,8 +33,8 @@ angular.module('starter.controllers',
 										DataStorage.setUserId(userData._id);
 										DataStorage.setUsername(userData.name);
 										DataStorage.setAvatar(userData.avatar);
-										
-										console.log("Initial token: " + DataStorage.getToken());
+								
+										ServerClient.connectToServer(userData._id);
 									});
 						},
 						function(error) {
@@ -44,5 +44,7 @@ angular.module('starter.controllers',
 				}, function(error) {
 					console.log("Error: " + JSON.stringify(error));
 				});
-	} 
+	} else {
+		ServerClient.connectToServer(DataStorage.getUserId());
+	}	
 });
