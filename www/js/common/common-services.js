@@ -14,7 +14,7 @@ angular.module('coffeechat.common-services', [])
 			maximumImagesCount : 1,
 			width : 800,
 			height : 800,
-			quality : 20
+			quality : 50
 		};
 
 		if (window.imagePicker) {
@@ -26,14 +26,13 @@ angular.module('coffeechat.common-services', [])
 						var reader = new FileReader();
 						reader.onloadend = function(evt) {
 
-						
 							deferred.resolve({
-								data : evt.target.result,
+								data : evt.target.result.replace("data:" + file.type + ";base64,", ""),
 								file : file
 							})
 						};
 						
-						reader.readAsBinaryString(file);
+						reader.readAsDataURL(file);
 					}, fail);
 				}, fail);
 			}, fail, options);
@@ -47,6 +46,27 @@ angular.module('coffeechat.common-services', [])
 			deferred.reject(new Error(error));
 		}
 
+		return deferred.promise;
+	};
+	
+	this.uploadImage = function(imageData){
+		var deferred = $q.defer();
+	
+		var fd = new FormData();
+		fd.append("image", imageData);
+		fd.append("type", "base64");
+		fd.append("key", "6528448c258cff474ca9701c5bab6927");
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://api.imgur.com/2/upload.json");
+
+		xhr.onload = function () {
+			console.log("Response: " + xhr.responseText); 
+			var imgUrl = JSON.parse(xhr.responseText).upload.links.imgur_page + ".jpg";
+			deferred.resolve(imgUrl);
+		};
+
+		xhr.send(fd);
+		
 		return deferred.promise;
 	};
 })
@@ -65,33 +85,21 @@ angular.module('coffeechat.common-services', [])
 	// - avatar - the file metadata of the avatar picture
 	// - avatarData - the content of the avatar file
 	// - username - the name of the user
-	this.createUser = function(avatar, avatarData, username) {
 
-		var deferred = $q.defer();
-		
-		var boundary = "1408827490794";
-		var requestBody = this.createRequestBodyWithFileAndText(
-				"avatar", avatar, avatarData, "name", username, boundary);
-		
-		var xhr = new XMLHttpRequest();
+	this.createUser = function(username, avatarUrl) {
 		var createUserUrl = this.baseUrl + this.serviceUrls.createUser;
-		xhr.open('POST', createUserUrl);
+		var data = {
+				name: username,
+				avatar: avatarUrl
+		};
 		
-		// add the required HTTP header to handle a multipart form data POST request
- 		xhr.setRequestHeader('Content-Type','multipart/form-data; boundary=' + boundary);
- 		xhr.setRequestHeader('Content-Length', requestBody.length);
- 		
- 		xhr.addEventListener('load', function(event) {
-		      deferred.resolve(JSON.parse(xhr.responseText));
-	    });
-
-		xhr.addEventListener('error', function(event) {
-			deferred.reject(new Error(xhr.responseText));
-	    });
-
-		xhr.send(requestBody);
-		
-		return deferred.promise;
+		return $.ajax({
+			type: 'POST',
+			url: createUserUrl,
+			data: JSON.stringify(data),
+			dataType: "application/json",
+			contentType: "application/json",
+		});
 	};
 	
 	// Creates a new network (or gets the chats
@@ -108,7 +116,7 @@ angular.module('coffeechat.common-services', [])
 				lat: latitude,
 				lon: longitude
 		};
-		console.log("Logging in network: " + JSON.stringify(data));
+		
 		return $.ajax({
 			type: 'POST',
 			url: createNetworkUrl,
@@ -119,42 +127,6 @@ angular.module('coffeechat.common-services', [])
 				'authorization' : token
 			}
 		});
-	};
-	
-	
-	// Creates the body of a multipart/form-data request
-	// that contains a file and a text value
-	// - fileValueKey - the name of the file field to be sent
-	// - file - the file metadata
-	// - fileData - the dile binary content
-	// - textKey - the name of the text field to be sent
-	// - textValue - the value of the text field
-	// - boundary - delimiter that separates the file/text fields
-	this.createRequestBodyWithFileAndText = function(fileValueKey, file, fileData, 
-			textKey, textValue, boundary) {
- 		var reqBody = "";
- 		
- 		reqBody += "--" + boundary + "\r\n";
- 		reqBody += 'content-disposition: form-data; name="' + textKey + '"\r\n';
- 		reqBody += "\r\n";
- 		reqBody += textValue + "\r\n";
-
- 		
- 		// construct the body
- 		reqBody += "--" + boundary + "\r\n";
- 		reqBody += "content-disposition: form-data; "
- 			+ 'name="' + fileValueKey + '"; '
- 			+ 'filename="' + file.name + '"\r\n';
- 		
- 		reqBody += "Content-Type: " + "application/octet-stream" + "\r\n";
- 		reqBody += "\r\n";
- 		
- 		reqBody += fileData + "\r\n";
- 		
- 	
- 		reqBody += "--" + boundary + "--" + "\r\n";
- 		// console.log(reqBody);
- 		return reqBody;
 	};
 
 	this.connectToServer = function(userId){
@@ -183,10 +155,6 @@ angular.module('coffeechat.common-services', [])
 })
 
 .service('DataStorage', function(){
-	this.token = "";
-	this.name = "";
-	this.networkName = "";
-	this.userId = "";
 	
 	this.getToken = function(){
 		return localStorage.getItem("token");
@@ -202,6 +170,22 @@ angular.module('coffeechat.common-services', [])
 	
 	this.setUserId = function(id){
 		localStorage.setItem("userId", id);
+	}
+	
+	this.getUsername = function(){
+		return localStorage.getItem("username");
+	}
+	
+	this.setUsername = function(username){
+		localStorage.setItem("username", username); 
+	}
+	
+	this.getAvatar = function(){
+		return localStorage.getItem("avatar");
+	}
+	
+	this.setAvatar = function(avatar){
+		localStorage.setItem("avatar", avatar);
 	}
 })
 

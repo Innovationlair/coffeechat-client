@@ -2,7 +2,7 @@
   <ion-content class="has-tabs-top">
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" ui-sref="tab.chat-detail({userId: chat.id})">
-        <img ng-src="{{ chat.id | profilePicture }}">
+        <img ng-src="{{ chat.profilePic }}">
         <h2>{{chat.name}}</h2>
         <p>{{chat.lastText}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
