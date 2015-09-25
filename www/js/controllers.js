@@ -21,23 +21,28 @@ angular.module('starter.controllers',
 	if (!DataStorage.getToken()) {
 		ImageFilePicker.pickImage().then(
 				function(result) {
-					ServerClient.createUser(result.file, result.data,
-							"samsung1").then(function(data) {
-						// console.log("Success: " +
-						// JSON.stringify(data));
-						DataStorage.token = data.token;
-						DataStorage.setToken(data.token);
-						DataStorage.setUserId(data._id);
-						DataStorage.name = data.name;
-						DataStorage.userId = data._id;
-					}, function(error) {
-						console.log("Error: " + JSON.stringify(error));
-					});
-	
+					ImageFilePicker.uploadImage(result.data)
+						.then(function(imgUrl) {
+								ServerClient.createUser("sony10", imgUrl)
+									.then(function(error) {
+										console.log("Error: " + JSON.stringify(error));
+									}, function(response){
+										var userData = JSON.parse(response.responseText);
+										console.log("Received data: " + JSON.stringify(userData));
+										DataStorage.setToken(userData.token);
+										DataStorage.setUserId(userData._id);
+										DataStorage.setUsername(userData.name);
+										DataStorage.setAvatar(userData.avatar);
+										
+										console.log("Initial token: " + DataStorage.getToken());
+									});
+						},
+						function(error) {
+							console.log("Error: " + JSON.stringify(error));
+						});
+					
 				}, function(error) {
 					console.log("Error: " + JSON.stringify(error));
 				});
-	} else {
-		DataStorage.token = DataStorage.getToken();
-	}
+	} 
 });

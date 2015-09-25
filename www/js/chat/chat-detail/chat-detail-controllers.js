@@ -21,6 +21,7 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   $scope.toUser = User.byId($stateParams.userId);
 
   $scope.currentUser._id = DataStorage.getUserId();
+  $scope.currentUser.pic = DataStorage.getAvatar();
   
   $scope.input = {
     message: localStorage['userMessage-' + $scope.toUser._id] || ''
@@ -78,7 +79,7 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   }
   
   function connectToServer(){
-	  ServerClient.connectToServer();
+	  ServerClient.connectToServer($scope.currentUser._id);
 	  ServerClient.onMessageReceived(onMessageReceived);
   }
   
