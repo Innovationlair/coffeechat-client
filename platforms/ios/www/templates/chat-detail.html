@@ -39,7 +39,7 @@
         <span am-time-ago="message.date"></span>
       </div>
 
-      <div ng-if="currentUser._id !== message.senderId">
+      <div ng-if="currentUser._id != message.senderId">
 
         <img ng-click="viewProfile(message)" class="profile-pic left" ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />
 
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div ng-if="currentUser._id === message.senderId">
+      <div ng-if="currentUser._id == message.senderId">
 
         <img ng-click="viewProfile(message)" class="profile-pic right" ng-src="{{currentUser.pic}}" onerror="onProfilePicError(this)" />
 
