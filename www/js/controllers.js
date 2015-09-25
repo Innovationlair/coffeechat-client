@@ -28,6 +28,7 @@ angular.module('starter.controllers',
 				function(result) {
 					ServerClient.createUser(result.file, result.data,
 							$scope.user.username).then(function(data) {
+
 						// console.log("Success: " +
 						// JSON.stringify(data));
 						DataStorage.token = data.token;

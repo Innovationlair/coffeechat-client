@@ -20,6 +20,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   // mock acquiring data via $stateParams
   $scope.toUser = User.byId($stateParams.userId);
 
+  $scope.currentUser._id = DataStorage.getUserId();
+  
   $scope.input = {
     message: localStorage['userMessage-' + $scope.toUser._id] || ''
   };
@@ -34,8 +36,6 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   $scope.$on('$ionicView.enter', function() {
 
     getMessages();
-    
-    $scope.socket = {};
     
     connectToServer();
 
@@ -78,27 +78,21 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   }
   
   function connectToServer(){
-	  $scope.socket = io.connect(ServerClient.baseUrl);
-	  $scope.socket.on("connect", function(msg){
-		  
-		  $scope.socket.emit('register', DataStorage.getUserId());
-		  
-		  console.log("Me: " + DataStorage.getUserId());
-		  console.log("Him: " + $scope.toUser._id);
-	  });
-	  $scope.socket.on("message", function(msg){
-		  	console.log("Received: " + JSON.stringify(msg));
-		    $scope.messages.push({
-				body: msg.message,
-				_id : new Date().getTime(),
-				date : new Date(),
-				username : DataStorage.name,
-				senderId : msg.senderId,
-				pic : $scope.currentUser.pic,
-			});
-			$scope.$apply();
-	  });
+	  ServerClient.connectToServer();
+	  ServerClient.onMessageReceived(onMessageReceived);
   }
+  
+	function onMessageReceived(msg){
+		$scope.messages.push({
+			body: msg.message,
+			_id : new Date().getTime(),
+			date : new Date(),
+			username : DataStorage.name,
+			senderId : msg.senderId,
+			pic : $scope.currentUser.pic,
+		});
+		$scope.$apply();
+	}
 
   $scope.$watch('input.message', function(newValue, oldValue) {
     if (!newValue) newValue = '';
@@ -121,11 +115,10 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
     message._id = new Date().getTime();
     message.date = new Date();
     message.username = DataStorage.name;
-    message.senderId = DataStorage._id;
+    message.senderId = DataStorage.getUserId();
     message.pic = $scope.currentUser.pic;
-
-    //console.log("Message: " + JSON.stringify(message));
-    $scope.socket.emit("message", message);
+    
+    ServerClient.sendMessage(message);
     
     $scope.messages.push(message);
 
