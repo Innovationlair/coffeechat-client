@@ -18,11 +18,16 @@ angular.module('starter.controllers',
 })
 
 .controller('LookAroundCtrl', function($scope, ImageFilePicker, ServerClient, DataStorage) {
-	if (!DataStorage.getToken()) {
+	$scope.user = {
+		username : ""
+	};
+
+	$scope.pickImage = function() {
+
 		ImageFilePicker.pickImage().then(
 				function(result) {
 					ServerClient.createUser(result.file, result.data,
-							"misho2").then(function(data) {
+							$scope.user.username).then(function(data) {
 						// console.log("Success: " +
 						// JSON.stringify(data));
 						DataStorage.token = data.token;
@@ -37,7 +42,7 @@ angular.module('starter.controllers',
 				}, function(error) {
 					console.log("Error: " + JSON.stringify(error));
 				});
-	} else {
-		DataStorage.token = DataStorage.getToken();
-	}
+	};
+	
+	DataStorage.token = DataStorage.getToken();
 });

@@ -25,10 +25,18 @@ angular.module('coffeechat.common-services', [])
 					data.file(function(file) {
 						var reader = new FileReader();
 						reader.onloadend = function(evt) {
-							deferred.resolve({
-								data : evt.target.result,
-								file : file
-							})
+								console.log(evt.target.result.length);
+ 							if (evt.target.readyState == FileReader.DONE) { 
+								console.log("result target");
+								//console.log(evt.target);
+
+								// console.log(evt.target);
+								// console.log(evt.target);
+								deferred.resolve({
+									data : reader.result,
+									file : file
+								})
+							}
 						};
 						
 						reader.readAsBinaryString(file);
@@ -40,6 +48,8 @@ angular.module('coffeechat.common-services', [])
 		}
 
 		function fail(error) {
+			console.log("error on send image");
+			console.log(error);
 			deferred.reject(new Error(error));
 		}
 
@@ -51,7 +61,8 @@ angular.module('coffeechat.common-services', [])
 	this.baseUrl = 'http://192.168.1.12:3000';
 	this.serviceUrls = {
 		createUser : '/users',
-		createNetwork : '/networks'
+		createNetwork : '/networks',
+		updateUser : '/user/edit'
 	};
 	
 	// Sends a request to the server to create a new user
@@ -62,7 +73,7 @@ angular.module('coffeechat.common-services', [])
 
 		var deferred = $q.defer();
 		
-		var boundary = "blob";
+		var boundary = "1408827490794";
 		var requestBody = this.createRequestBodyWithFileAndText(
 				"avatar", avatar, avatarData, "name", username, boundary);
 		
@@ -127,23 +138,26 @@ angular.module('coffeechat.common-services', [])
 			textKey, textValue, boundary) {
  		var reqBody = "";
  		
+ 		reqBody += "--" + boundary + "\r\n";
+ 		reqBody += 'content-disposition: form-data; name="' + textKey + '"\r\n';
+ 		reqBody += "\r\n";
+ 		reqBody += textValue + "\r\n";
+
+ 		
  		// construct the body
  		reqBody += "--" + boundary + "\r\n";
  		reqBody += "content-disposition: form-data; "
  			+ 'name="' + fileValueKey + '"; '
  			+ 'filename="' + file.name + '"\r\n';
  		
- 		reqBody += "Content-Type: " + file.type + "\r\n";
+ 		reqBody += "Content-Type: " + "application/octet-stream" + "\r\n";
  		reqBody += "\r\n";
  		
  		reqBody += fileData + "\r\n";
  		
- 		reqBody += "--" + boundary + "\r\n";
- 		reqBody += 'content-disposition: form-data; name="' + textKey + '"\r\n';
- 		reqBody += "\r\n";
- 		reqBody += textValue + "\r\n";
- 		reqBody += "--" + boundary + "\r\n";
- 		
+ 	
+ 		reqBody += "--" + boundary + "--" + "\r\n";
+ 		// console.log(reqBody);
  		return reqBody;
 	};
 })
