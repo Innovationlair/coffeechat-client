@@ -19,9 +19,14 @@ angular.module('coffeechat.user.services', [])
     pic: 'https://avatars0.githubusercontent.com/u/1151641?v=3&s=460'
   };
   
-  this.addUser = function(userObj){
-	  users.push(userObj);
-  };
+  this.userMap = {};
+  
+	this.addUser = function(userObj){
+		if(!this.userMap[userObj._id]){
+			this.userMap[userObj._id] = true;
+			users.push(userObj);
+		}
+	};
 
   var users = [];
   // Some fake testing data

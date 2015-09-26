@@ -18,33 +18,43 @@ angular.module('starter.controllers',
 })
 
 .controller('LookAroundCtrl', function($scope, ImageFilePicker, ServerClient, DataStorage) {
-	if (!DataStorage.getToken()) {
+	$scope.user = {
+		username : ""
+	};
+	
+	$scope.userLogged = DataStorage.getUserId() ? true : false;
+
+	$scope.pickImage = function() {
+
 		ImageFilePicker.pickImage().then(
-				function(result) {
-					ImageFilePicker.uploadImage(result.data)
-						.then(function(imgUrl) {
-								ServerClient.createUser("sony11", imgUrl)
-									.then(function(error) {
-										console.log("Error: " + JSON.stringify(error));
-									}, function(response){
-										var userData = JSON.parse(response.responseText);
-										console.log("Received data: " + JSON.stringify(userData));
-										DataStorage.setToken(userData.token);
-										DataStorage.setUserId(userData._id);
-										DataStorage.setUsername(userData.name);
-										DataStorage.setAvatar(userData.avatar);
-								
-										ServerClient.connectToServer(userData._id);
-									});
-						},
-						function(error) {
-							console.log("Error: " + JSON.stringify(error));
-						});
-					
-				}, function(error) {
-					console.log("Error: " + JSON.stringify(error));
-				});
-	} else {
+    		function(result) {
+     			ImageFilePicker.uploadImage(result.data)
+      			.then(function(imgUrl) {
+        			ServerClient.createUser($scope.user.username, imgUrl)
+         				.then(function(error) {
+          					console.log("Error: " + JSON.stringify(error));
+         				}, function(response){
+          					var userData = JSON.parse(response.responseText);
+         					DataStorage.setToken(userData.token);
+          					DataStorage.setUserId(userData._id);
+          					DataStorage.setUsername(userData.name);
+          					DataStorage.setAvatar(userData.avatar);
+							
+							ServerClient.connectToServer(DataStorage.getUserId());
+         				});
+      			},
+      			function(error) {
+       				console.log("Error: " + JSON.stringify(error));
+      			});
+     
+    		}, function(error) {
+     			console.log("Error: " + JSON.stringify(error));
+    		});
+
+	};
+	
+	if(DataStorage.getUserId()){
 		ServerClient.connectToServer(DataStorage.getUserId());
-	}	
+	}
+	
 });

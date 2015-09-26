@@ -25,6 +25,11 @@ angular.module('coffeechat.common-services', [])
 					data.file(function(file) {
 						var reader = new FileReader();
 						reader.onloadend = function(evt) {
+							console.log("imahge format");
+							console.log(file.type);
+							if (!file.type) {
+								file.type = "image/jpeg";
+							}
 							deferred.resolve({
 								data : evt.target.result.replace("data:" + file.type + ";base64,", ""),
 								file : file
@@ -40,6 +45,8 @@ angular.module('coffeechat.common-services', [])
 		}
 
 		function fail(error) {
+			console.log("error on send image");
+			console.log(error);
 			deferred.reject(new Error(error));
 		}
 
@@ -72,7 +79,8 @@ angular.module('coffeechat.common-services', [])
 	this.baseUrl = 'http://192.168.1.12:3000';
 	this.serviceUrls = {
 		createUser : '/users',
-		createNetwork : '/networks'
+		createNetwork : '/networks',
+		updateUser : '/user/edit'
 	};
 	
 	this.socket = null;
@@ -81,6 +89,7 @@ angular.module('coffeechat.common-services', [])
 	// - avatar - the file metadata of the avatar picture
 	// - avatarData - the content of the avatar file
 	// - username - the name of the user
+
 	this.createUser = function(username, avatarUrl) {
 		var createUserUrl = this.baseUrl + this.serviceUrls.createUser;
 		var data = {
@@ -104,7 +113,6 @@ angular.module('coffeechat.common-services', [])
 	// - token - the token used for authorization
 	this.createNetwork = function(networkName, latitude, longitude, token){
 		var deferred = $q.defer();
-		
 		var createNetworkUrl = this.baseUrl + this.serviceUrls.createNetwork;
 		var data = {
 				name: networkName,

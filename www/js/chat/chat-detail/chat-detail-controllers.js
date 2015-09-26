@@ -17,6 +17,8 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   ServerClient,
   DataStorage) {
 
+  $scope.messages = [];
+  
   // mock acquiring data via $stateParams
   $scope.toUser = User.byId($stateParams.userId);
 
@@ -67,15 +69,16 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
 
   function getMessages() {
     // the service is mock but you would probably pass the toUser's GUID here
-    ChatDetail.messagesByChatId($scope.toUser._id)
+    /*ChatDetail.messagesByChatId($scope.toUser._id)
       .then(function(data) {
         $scope.doneLoading = true;
         $scope.messages = data.messages;
 
-        $timeout(function() {
+        
+      });*/
+	  $timeout(function() {
           viewScroll.scrollBottom();
         }, 0);
-      });
   }
   
   function connectToServer(){
@@ -83,6 +86,7 @@ angular.module('coffeechat.chat.chat-detail.controllers', [
   }
   
 	function onMessageReceived(msg){
+		console.log("Message received: " + JSON.stringify(msg));
 		$scope.messages.push({
 			body: msg.message,
 			_id : new Date().getTime(),
